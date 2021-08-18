@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.scoperetail.pom</groupId>
+		<artifactId>oss-parent-pom</artifactId>
+		<version>1.6</version>
+		<relativePath />
+	</parent>
+	<groupId>com.scoperetail.fusion</groupId>
+	<artifactId>fusion-adapter-dedupe</artifactId>
+	<version>0.1-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
+	<description>Fusion Adapter Dedupe</description>
+	<url>https://github.com/scoperetail-io/${project.artifactId}</url>
+
+	<properties>
+		<spring.version>2.4.5</spring.version>
+		<fusion-shared-kernel.version>0.6</fusion-shared-kernel.version>
+	</properties>
+
+	<scm>
+		<developerConnection>
+            scm:git:git@github.com:scoperetail-io/${project.artifactId}.git
+        </developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/scoperetail-io/${project.artifactId}</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>SI003</id>
+			<name>Ravi Zadpide</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>SI002</id>
+			<name>Amit Petkar</name>
+			<roles>
+				<role>Architect</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.scoperetail.fusion</groupId>
+			<artifactId>fusion-shared-kernel</artifactId>
+			<version>${fusion-shared-kernel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
