@@ -38,8 +38,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
     havingValue = "Relational",
     matchIfMissing = false)
 public class DedupeJpaAdapter implements DedupeOutboundPort {
-  @Autowired(required = false)
-  private DedupeKeyRepository dedupeKeyRepository;
+  @Autowired private DedupeKeyRepository dedupeKeyRepository;
 
   @Override
   public Boolean isNotDuplicate(final String logKey) {

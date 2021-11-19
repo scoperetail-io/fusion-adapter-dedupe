@@ -1,4 +1,4 @@
-package com.scoperetail.fusion.adapter.dedupe.cassandra.adapter;
+package com.scoperetail.fusion.adapter.dedupe;
 
 /*-
  * *****
@@ -26,23 +26,9 @@ package com.scoperetail.fusion.adapter.dedupe.cassandra.adapter;
  * =====
  */
 
-import com.scoperetail.fusion.adapter.dedupe.DedupeOutboundPort;
-import com.scoperetail.fusion.adapter.dedupe.cassandra.repository.DedupeKeyRepository;
-import com.scoperetail.fusion.shared.kernel.common.annotation.PersistenceAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-@PersistenceAdapter
-@ConditionalOnProperty(
-    value = "fusion.dedupe.dbType",
-    havingValue = "Cassandra",
-    matchIfMissing = false)
-public class DedupeCassandraAdapter implements DedupeOutboundPort {
-
-  @Autowired private DedupeKeyRepository dedupeKeyRepository;
-
-  @Override
-  public Boolean isNotDuplicate(final String logKey) {
-    return dedupeKeyRepository.insertIfNotExist(logKey);
-  }
-}
+@Configuration
+@ComponentScan
+public class AdapterConfig {}
