@@ -1,4 +1,4 @@
-package com.scoperetail.fusion.adapter.dedupe;
+package com.scoperetail.fusion.adapter.dedupe.jpa.config;
 
 /*-
  * *****
@@ -26,11 +26,44 @@ package com.scoperetail.fusion.adapter.dedupe;
  * =====
  */
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import javax.sql.DataSource;
+
 @Configuration
-@EnableJpaRepositories(basePackages = "com.scoperetail.fusion.adapter.dedupe.repository")
-@EntityScan(basePackages = "com.scoperetail.fusion.adapter.dedupe.entity")
-public class FusionDedupeConfig {}
+@ConditionalOnProperty(
+    value = "fusion.dedupe.dbType",
+    havingValue = "Relational",
+    matchIfMissing = false)
+@EnableJpaRepositories(basePackages = "com.scoperetail.fusion.adapter.dedupe.jpa.repository")
+@EntityScan(basePackages = "com.scoperetail.fusion.adapter.dedupe.jpa.entity")
+public class FusionJpaDedupeConfig {
+
+  @Value("${spring.datasource.driverClassName}")
+  private String driverName;
+
+  @Value("${spring.datasource.url}")
+  private String url;
+
+  @Value("${spring.datasource.username}")
+  private String username;
+
+  @Value("${spring.datasource.password}")
+  private String password;
+
+  @Bean
+  public DataSource getDataSource() {
+    DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+    dataSourceBuilder.driverClassName(driverName);
+    dataSourceBuilder.url(url);
+    dataSourceBuilder.username(username);
+    dataSourceBuilder.password(password);
+    return dataSourceBuilder.build();
+  }
+}

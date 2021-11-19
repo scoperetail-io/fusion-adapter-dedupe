@@ -1,4 +1,4 @@
-package com.scoperetail.fusion.adapter.dedupe.entity;
+package com.scoperetail.fusion.adapter.dedupe.jpa.entity;
 
 /*-
  * *****
