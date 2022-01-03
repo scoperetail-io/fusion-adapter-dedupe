@@ -33,7 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 
 @PersistenceAdapter
-@ConditionalOnExpression(value = "'${fusion.dedupe.dbType:''}'.contains('Cassandra')")
+@ConditionalOnExpression(value = "'${fusion.dedupe.dbType}'.contains('Cassandra')")
 public class DedupeCassandraAdapter implements DedupeOutboundPort {
 
   @Autowired private DedupeKeyRepository dedupeKeyRepository;

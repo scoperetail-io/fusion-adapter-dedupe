@@ -26,11 +26,6 @@ package com.scoperetail.fusion.adapter.dedupe.cassandra.repository.custom;
  * =====
  */
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
-import org.springframework.stereotype.Repository;
-
-@Repository
-@ConditionalOnExpression(value = "'${fusion.dedupe.dbType:''}'.contains('Cassandra')")
 public interface DedupeKeyRepositoryCustom {
 
   Boolean insertIfNotExist(String logKey);

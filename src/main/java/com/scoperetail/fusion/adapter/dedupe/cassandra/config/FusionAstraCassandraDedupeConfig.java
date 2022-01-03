@@ -26,11 +26,12 @@ package com.scoperetail.fusion.adapter.dedupe.cassandra.config;
  * =====
  */
 
+import com.datastax.oss.driver.api.core.CqlSession;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomizer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.cassandra.core.CassandraAdminTemplate;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
 import java.nio.file.Paths;
@@ -57,11 +58,15 @@ public class FusionAstraCassandraDedupeConfig {
   private String keySpace;
 
   @Bean
-  public CqlSessionBuilderCustomizer cqlSessionBuilderCustomizer() {
-    return cqlSessionBuilder ->
-        cqlSessionBuilder
-            .withCloudSecureConnectBundle(Paths.get(secureConnectBundlePath))
-            .withAuthCredentials(username, password)
-            .withKeyspace(keySpace);
+  public CassandraAdminTemplate cassandraTemplate() {
+    return new CassandraAdminTemplate(cqlSession());
+  }
+
+  public CqlSession cqlSession() {
+    return CqlSession.builder()
+        .withCloudSecureConnectBundle(Paths.get(secureConnectBundlePath))
+        .withAuthCredentials(username, password)
+        .withKeyspace(keySpace)
+        .build();
   }
 }

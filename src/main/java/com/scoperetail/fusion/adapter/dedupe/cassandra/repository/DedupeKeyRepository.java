@@ -33,6 +33,6 @@ import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@ConditionalOnExpression(value = "'${fusion.dedupe.dbType:''}'.contains('Cassandra')")
+@ConditionalOnExpression(value = "'${fusion.dedupe.dbType}'.contains('Cassandra')")
 public interface DedupeKeyRepository
     extends CassandraRepository<DedupeKeyEntity, String>, DedupeKeyRepositoryCustom {}

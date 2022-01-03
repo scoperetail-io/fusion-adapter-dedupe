@@ -30,16 +30,12 @@ import com.scoperetail.fusion.adapter.dedupe.cassandra.entity.DedupeKeyEntity;
 import com.scoperetail.fusion.adapter.dedupe.cassandra.repository.custom.DedupeKeyRepositoryCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.EntityWriteResult;
 import org.springframework.data.cassandra.core.InsertOptions;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
-@Repository
-@ConditionalOnExpression(value = "'${fusion.dedupe.dbType:''}'.contains('Cassandra')")
 public class DedupeKeyRepositoryCustomImpl implements DedupeKeyRepositoryCustom {
 
   @Autowired private CassandraTemplate template;
