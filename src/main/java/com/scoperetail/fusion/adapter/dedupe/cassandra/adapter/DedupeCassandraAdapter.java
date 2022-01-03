@@ -30,13 +30,10 @@ import com.scoperetail.fusion.adapter.dedupe.DedupeOutboundPort;
 import com.scoperetail.fusion.adapter.dedupe.cassandra.repository.DedupeKeyRepository;
 import com.scoperetail.fusion.shared.kernel.common.annotation.PersistenceAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 
 @PersistenceAdapter
-@ConditionalOnProperty(
-    value = "fusion.dedupe.dbType",
-    havingValue = "Cassandra",
-    matchIfMissing = false)
+@ConditionalOnExpression(value = "'${fusion.dedupe.dbType}'.contains('Cassandra')")
 public class DedupeCassandraAdapter implements DedupeOutboundPort {
 
   @Autowired private DedupeKeyRepository dedupeKeyRepository;

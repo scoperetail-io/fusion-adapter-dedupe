@@ -37,11 +37,11 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 @Configuration
 @ConditionalOnProperty(
     value = "fusion.dedupe.dbType",
-    havingValue = "Cassandra",
+    havingValue = "Apache-Cassandra",
     matchIfMissing = false)
 @EnableCassandraRepositories(
     basePackages = "com.scoperetail.fusion.adapter.dedupe.cassandra.repository")
-public class FusionCassandraDedupeConfig extends AbstractCassandraConfiguration {
+public class FusionApacheCassandraDedupeConfig extends AbstractCassandraConfiguration {
 
   @Value("${spring.data.cassandra.keyspace-name}")
   private String keySpace;

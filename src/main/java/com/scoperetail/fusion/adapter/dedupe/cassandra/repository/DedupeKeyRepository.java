@@ -28,14 +28,11 @@ package com.scoperetail.fusion.adapter.dedupe.cassandra.repository;
 
 import com.scoperetail.fusion.adapter.dedupe.cassandra.entity.DedupeKeyEntity;
 import com.scoperetail.fusion.adapter.dedupe.cassandra.repository.custom.DedupeKeyRepositoryCustom;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@ConditionalOnProperty(
-    value = "fusion.dedupe.dbType",
-    havingValue = "Cassandra",
-    matchIfMissing = false)
+@ConditionalOnExpression(value = "'${fusion.dedupe.dbType}'.contains('Cassandra')")
 public interface DedupeKeyRepository
     extends CassandraRepository<DedupeKeyEntity, String>, DedupeKeyRepositoryCustom {}
