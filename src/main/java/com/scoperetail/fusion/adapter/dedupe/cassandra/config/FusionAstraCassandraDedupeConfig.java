@@ -62,7 +62,7 @@ public class FusionAstraCassandraDedupeConfig {
     return new CassandraAdminTemplate(cqlSession());
   }
 
-  public CqlSession cqlSession() {
+  private CqlSession cqlSession() {
     return CqlSession.builder()
         .withCloudSecureConnectBundle(Paths.get(secureConnectBundlePath))
         .withAuthCredentials(username, password)
