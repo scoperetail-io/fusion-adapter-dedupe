@@ -40,7 +40,7 @@ public class DedupeKeyRepositoryCustomImpl implements DedupeKeyRepositoryCustom 
 
   @Autowired private CassandraTemplate template;
 
-  @Value("${fusion.dedupe.ttl:0}")
+  @Value("${db.cassandra.ttl:0}")
   private Integer ttl;
 
   @Override

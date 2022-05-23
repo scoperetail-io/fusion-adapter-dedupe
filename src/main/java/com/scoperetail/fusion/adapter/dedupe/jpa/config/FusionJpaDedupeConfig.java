@@ -37,10 +37,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import javax.sql.DataSource;
 
 @Configuration
-@ConditionalOnProperty(
-    value = "fusion.dedupe.dbType",
-    havingValue = "Relational",
-    matchIfMissing = false)
+@ConditionalOnProperty(value = "db.type", havingValue = "Relational", matchIfMissing = false)
 @EnableJpaRepositories(basePackages = "com.scoperetail.fusion.adapter.dedupe.jpa.repository")
 @EntityScan(basePackages = "com.scoperetail.fusion.adapter.dedupe.jpa.entity")
 public class FusionJpaDedupeConfig {
