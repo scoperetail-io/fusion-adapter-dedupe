@@ -68,7 +68,7 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.scoperetail.commons.cassandra.config</groupId>
+			<groupId>com.scoperetail.commons</groupId>
 			<artifactId>commons-cassandra-config</artifactId>
 			<version>${commons-cassandra-config.version}</version>
 		</dependency>
