@@ -40,10 +40,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-@ConditionalOnProperty(
-    value = "fusion.dedupe.dbType",
-    havingValue = "Relational",
-    matchIfMissing = false)
+@ConditionalOnProperty(value = "db.type", havingValue = "Relational", matchIfMissing = false)
 public interface DedupeKeyRepository extends JpaRepository<DedupeKeyEntity, String> {
   @Transactional
   @Modifying

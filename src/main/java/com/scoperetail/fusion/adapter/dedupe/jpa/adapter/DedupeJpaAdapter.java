@@ -33,10 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @PersistenceAdapter
-@ConditionalOnProperty(
-    value = "fusion.dedupe.dbType",
-    havingValue = "Relational",
-    matchIfMissing = false)
+@ConditionalOnProperty(value = "db.type", havingValue = "Relational", matchIfMissing = false)
 public class DedupeJpaAdapter implements DedupeOutboundPort {
   @Autowired private DedupeKeyRepository dedupeKeyRepository;
 
